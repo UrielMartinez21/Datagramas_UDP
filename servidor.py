@@ -34,7 +34,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
 
         # --> Obtener el nombre y tamaño del archivo
         file_name, file_size = file_info[0], int(file_info[1])
-        print(f"Recibiendo archivo: {file_name}, Tamaño: {file_size} bytes")
+        print(f"\n[+]Recibiendo archivo: {file_name}, Tamaño: {file_size} bytes")
 
         # --> Crear el archivo en la carpeta de destino
         file_path = os.path.join(carpeta_destino, file_name)
@@ -58,4 +58,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
                 # --> Actualizar el número de bytes recibidos
                 total_received += len(data)
 
-        print(f"Archivo '{file_name}' recibido y guardado con éxito en '{carpeta_destino}'.")
+        print(f"[+]Archivo '{file_name}' recibido y guardado con éxito en '{carpeta_destino}'.")
+        
+        # Salir 
+        break
