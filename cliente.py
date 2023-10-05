@@ -18,6 +18,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as client_socket:
     client_socket.sendto(f"{file_name}:{file_size}".encode(), (HOST, PORT))
 
     # --> Enviar el archivo en fragmentos
+    print("[+]Enviando archivo...")
     bytes_sent = 0
     while bytes_sent < file_size:
         # --> Enviar fragmentos de 1024 bytes
@@ -32,6 +33,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as client_socket:
             break
         else:
             bytes_sent += bytes_to_send
-            print(f"Enviados {bytes_sent} de {file_size} bytes.")
+            print(f"\tEnviados {bytes_sent} de {file_size} bytes.")
 
-    print(f"Archivo '{file_name}' enviado con éxito.")
+    print(f"[+]Archivo '{file_name}' enviado con éxito.")
