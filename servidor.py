@@ -39,6 +39,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
         # --> Crear el archivo en la carpeta de destino
         file_path = os.path.join(carpeta_destino, file_name)
 
+        # Antes del bucle while:
+        received_data_set = set()
+
         # --> Recibir el archivo en fragmentos
         with open(file_path, 'wb') as file:
             total_received = 0
@@ -50,9 +53,20 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
                 if not data:
                     break
 
+                # --> Comparar si no hay duplicados
+                if data in received_data_set:
+                    print("\tPaquete duplicado. Enviando confirmación al cliente...")
+                    server_socket.sendto(b"OK", addr)
+                    continue
+
                 # --> Escribir los datos recibidos en el archivo
                 file.write(data)
+
+                # --> Agregar los datos al conjunto de datos recibidos
+                received_data_set.add(data)
+
                 # --> Mandar confirmación al cliente
+                print("\tMandando confirmación al cliente...")
                 server_socket.sendto(b"OK", addr)
 
                 # --> Actualizar el número de bytes recibidos
