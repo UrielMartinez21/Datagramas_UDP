@@ -6,6 +6,7 @@ PORT = 12345
 
 # --> Nombre del archivo a enviar
 file_name = 'imagen.jpg'
+# file_name = 'texto_test.txt'
 
 # --> Iniciar conexión UDP
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as client_socket:

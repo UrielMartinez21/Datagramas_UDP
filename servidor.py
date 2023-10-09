@@ -39,7 +39,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
         # --> Crear el archivo en la carpeta de destino
         file_path = os.path.join(carpeta_destino, file_name)
 
-        # Antes del bucle while:
+        # --> Crear un conjunto para almacenar los datos recibidos
         received_data_set = set()
 
         # --> Recibir el archivo en fragmentos
